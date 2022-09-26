@@ -8,7 +8,7 @@ function global:au_GetLatest {
     $download_page = Invoke-WebRequest -Uri $releases -UseBasicParsing
 
     #https://github.com/texstudio-org/texstudio/releases/download/2.12.22/texstudio-2.12.22-win-qt5.exe
-    $re  = "download/.+/texstudio-(.+)-win.+.exe"
+    $re  = "download/.+/texstudio-(.+)-win-qt6.exe"
     $url = $download_page.links | Where-Object href -match $re | Select-Object -First 1 -expand href
 
     $version = Get-Version(([regex]::Match($url,$re)).Captures.Groups[1].value)
